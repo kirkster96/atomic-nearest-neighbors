@@ -9,3 +9,6 @@ Currently, this program only supports POSCARS that are in "Direct" mode. Learn m
 2. Open the folder using Windows PowerShell. (view the folder and shift +  right-click to open PowerShell window in that folder)
 3. Type ./dopingApp [REPLACE WITH POSCAR FILE NAME]
 4. Follow the on-screen prompts to run the program.
+
+## Changelog
+v0.1.0, Jan 10, 2021 -- Initial release.
