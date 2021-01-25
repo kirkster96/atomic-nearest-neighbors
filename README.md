@@ -10,5 +10,7 @@ Currently, this program only supports POSCARS that are in "Direct" mode. Learn m
 3. Type ./dopingApp [REPLACE WITH POSCAR FILE NAME]
 4. Follow the on-screen prompts to run the program.
 
+<img src="https://github.com/kirkster96/atomic-nearest-neighbors/blob/master/docs/_static/sample_output_v0_1_0.PNG?raw=true" width="500">
+
 ## Changelog
 v0.1.0, Jan 10, 2021 -- Initial release.
