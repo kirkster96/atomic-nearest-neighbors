@@ -66,7 +66,7 @@ int main(int argc, char * argv[])
     cout << "Select element for nearest-neighbors" << endl << "(type 'all' for all elements in system): ";
     cin >> userTarget;
 
-    nearestNeighbors(gAtoms, userElem, (userElemIndex-1), userTarget);
+    nearestNeighbors(gAtoms, userElem, userElemIndex, userTarget);
 
     return 0;
 }

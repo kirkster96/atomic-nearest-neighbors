@@ -20,15 +20,23 @@ std::vector<DistanceStruct> nearestNeighbors(std::vector<Atom> atoms, std::strin
     AtomPoint a, b;
     std::vector<DistanceStruct> sorted_distances;
 
-    int i = 0;
-    elemA = atoms[0];
-    while (elemA[0].elem != elem)
+    bool elemExists = false;
+    for (unsigned i = 0; i < atoms.size(); i++)
     {
         elemA = atoms[i];
-        i++;
+        if (elemA[0].elem == elem)
+        {
+            elemExists = true;
+            break;
+        }
     }
-    if(i > 0)
-        i = i + elemIndex -1;
+    if (!elemExists)
+    {
+        std::cout << "Element " << elem << " does not exist in the system." << std::endl;
+        return sorted_distances;
+    }
+
+    int i = elemIndex - 1;
     a = elemA[i];
 
     if (mode == "all")
@@ -45,9 +53,36 @@ std::vector<DistanceStruct> nearestNeighbors(std::vector<Atom> atoms, std::strin
             }
         }
     }
+    else
+    {
+        //Check if element is in system
+        elemExists = false;
+        for (unsigned i = 0; i < atoms.size(); i++)
+        {
+            elemB = atoms[i];
+            if (elemB[0].elem == mode)
+            {
+                elemExists = true;
+                break;
+            }
+        }
+        if (!elemExists)
+        {
+            std::cout << "Element " << mode << " does not exist in the system." << std::endl;
+            return sorted_distances;
+        }
+
+        for (size_t j = 0; j < elemB.size(); j++)
+        {
+            b = elemB[j];
+            double distance = evalDistance(a, b);
+            sorted_distances.push_back(DistanceStruct(distance, j + 1, b.elem));
+        }
+        
+    }
     std::sort(sorted_distances.begin(), sorted_distances.end());
     for (unsigned i = 0; i < sorted_distances.size(); i++)
-        std::cout << "\t>>> " << elem << (elemIndex+1) << " - " << sorted_distances[i].name << sorted_distances[i].key << "\t" << sorted_distances[i].value << std::endl;
+        std::cout << "\t>>> " << elem << elemIndex << " - " << sorted_distances[i].name << sorted_distances[i].key << "\t" << sorted_distances[i].value << std::endl;
 
     return sorted_distances;
 
